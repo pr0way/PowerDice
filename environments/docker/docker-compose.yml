@@ -1,0 +1,21 @@
+services:
+  homeassistant:
+    restart: unless-stopped
+    image: lscr.io/linuxserver/homeassistant:latest
+    mem_limit: 1g
+    container_name: homeassistant
+    network_mode: host
+    environment:
+      - PUID=1026
+      - PGID=100
+      - TZ=Europe/Warsaw
+    volumes:
+      - /local/path/here/data:/config
+  nanomq:
+    image: emqx/nanomq:latest
+    container_name: powerdice-mqtt-server
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    environment:
+      - NANOMQ_ALLOW_ANONYMOUS=true

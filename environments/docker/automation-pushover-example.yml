@@ -1,0 +1,58 @@
+alias: Smart Cube - Battery Level (Pushover)
+description: Notifications at 50%, 20%, and 5% battery based on voltage
+triggers:
+  - entity_id: sensor.powerdice_voltage
+    below: 3.80
+    id: battery_50
+    trigger: numeric_state
+  - entity_id: sensor.powerdice_voltage
+    below: 3.65
+    id: battery_20
+    trigger: numeric_state
+  - entity_id: sensor.powerdice_voltage
+    below: 3.5
+    id: battery_5
+    trigger: numeric_state
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: battery_50
+        sequence:
+          - data:
+              title: "🎲 Cube: Battery Half Full"
+              message: >-
+                Battery voltage at {{ states('sensor.powerdice_voltage') }}V
+                (~50% capacity remaining).
+              data:
+                priority: 0
+            action: notify.pushover
+      - conditions:
+          - condition: trigger
+            id: battery_20
+        sequence:
+          - data:
+              title: "⚠️ Cube: Low Battery"
+              message: >-
+                Voltage dropped to {{ states('sensor.powerdice_voltage') }}V
+                (~20% remaining). Charge soon.
+              data:
+                priority: 1
+                sound: intermission
+            action: notify.pushover
+      - conditions:
+          - condition: trigger
+            id: battery_5
+        sequence:
+          - data:
+              title: "🚨 Cube: CRITICAL BATTERY!"
+              message: >-
+                Voltage at {{ states('sensor.powerdice_voltage') }}V. Battery
+                nearly empty - charge NOW!
+              data:
+                priority: 2
+                retry: 60
+                expire: 3600
+                sound: siren
+            action: notify.pushover
+mode: single

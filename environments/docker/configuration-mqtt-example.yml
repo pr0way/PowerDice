@@ -1,0 +1,35 @@
+mqtt:
+- sensor:
+    device:
+      identifiers:
+      - 01KH43T61GJ0DX828EXC7G453R
+      model_id: '12345'
+      name: PowerDice
+    device_class: voltage
+    entity_category: diagnostic
+    name: cube-status
+    qos: 0.0
+    state_topic: dice/status
+    unique_id: 01KH43T61GJ0DX828EXC7G453R_baf2f2393713498cba1b25033a8aee25
+    unit_of_measurement: V
+    value_template: '{{ value_json.vbat }}'
+- sensor:
+    device:
+      identifiers:
+      - 01KH43T61GJ0DX828EXC7G453R
+      model_id: '12345'
+      name: PowerDice
+    device_class: enum
+    entity_category: diagnostic
+    name: Dice Last Roll
+    options:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    qos: 0.0
+    state_topic: dice/status
+    unique_id: 01KH43T61GJ0DX828EXC7G453R_10e985f16a9548db9aa72abd7429a13f
+    value_template: '{{ value_json.result | int }}'

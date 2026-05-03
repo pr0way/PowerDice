@@ -1,0 +1,94 @@
+alias: Dice Roll Color Change
+description: Change bulb color to reflect dice side value
+triggers:
+  - trigger: state
+    entity_id:
+      - sensor.dice_last_roll_dice_last_roll
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "1"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 255
+                - 0
+                - 0
+              brightness: 255
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "2"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 0
+                - 255
+                - 0
+              brightness: 255
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "3"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 0
+                - 0
+                - 255
+              brightness: 255
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "4"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 255
+                - 255
+                - 0
+              brightness: 255
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "5"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 255
+                - 0
+                - 255
+              brightness: 255
+      - conditions:
+          - condition: state
+            entity_id: sensor.dice_last_roll_dice_last_roll
+            state: "6"
+        sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.yeelight_color4_0x157fd1f5
+            data:
+              rgb_color:
+                - 0
+                - 255
+                - 255
+              brightness: 255
+mode: single
