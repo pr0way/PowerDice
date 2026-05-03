@@ -18,14 +18,14 @@ The project supports two deployment environments with different levels of system
 
 MQTT uses an external broker (NanoMQ). The broker and HA are deployed as separate containers.
 
-👉 [View Docker setup](./docker/INFO.md)
+👉 [View Docker setup](./environments/docker/INFO.md)
 
 
 ### 🍓 Raspberry Pi (current setup)
 
 Runs entirely on Home Assistant OS using the built-in Mosquitto MQTT broker add-on.
 
-👉 [View Raspberry Pi setup](./raspberry/INFO.md)
+👉 [View Raspberry Pi setup](./environments/raspberry/INFO.md)
 
 ## 🔌 Hardware
 ![Wiring diagram](./common/PowerDice-schematic.svg)
